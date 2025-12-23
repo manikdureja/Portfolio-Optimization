@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimizer - Modern Portfolio Theory</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio Optimization Tool</h1>
+            <p class="subtitle">Using Modern Portfolio Theory & Sharpe Ratio Maximization</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Portfolio Configuration</h2>
+                
+                <div class="form-group">
+                    <label for="tickers">Stock Tickers (comma-separated):</label>
+                    <input type="text" id="tickers" placeholder="AAPL, MSFT, GOOGL, AMZN, TSLA" value="AAPL, MSFT, GOOGL, AMZN">
+                    <small>Example: AAPL, MSFT, GOOGL, AMZN, TSLA</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start_date">Start Date:</label>
+                        <input type="date" id="start_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End Date:</label>
+                        <input type="date" id="end_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="risk_free_rate">Risk-Free Rate (%):</label>
+                    <input type="number" id="risk_free_rate" value="2" step="0.1" min="0" max="10">
+                    <small>Annual risk-free rate (e.g., Treasury bond yield)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="optimization_type">Optimization Strategy:</label>
+                    <select id="optimization_type">
+                        <option value="sharpe">Maximize Sharpe Ratio</option>
+                        <option value="min_variance">Minimize Variance</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button id="optimizeBtn" class="btn btn-primary">Optimize Portfolio</button>
+                    <button id="frontierBtn" class="btn btn-secondary">Show Efficient Frontier</button>
+                </div>
+
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Calculating optimal portfolio...</p>
+                </div>
+            </div>
+
+            <div class="results-section" id="results" style="display: none;">
+                <h2>Optimization Results</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Expected Annual Return</h3>
+                        <p class="metric-value" id="return">-</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Portfolio Volatility</h3>
+                        <p class="metric-value" id="volatility">-</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Sharpe Ratio</h3>
+                        <p class="metric-value" id="sharpe">-</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Optimal Portfolio Allocation</h3>
+                    <div id="allocationChart"></div>
+                </div>
+
+                <div class="weights-table-container">
+                    <h3>Asset Weights</h3>
+                    <table id="weightsTable">
+                        <thead>
+                            <tr>
+                                <th>Ticker</th>
+                                <th>Weight</th>
+                                <th>Allocation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weightsBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="frontier-section" id="frontierResults" style="display: none;">
+                <h2>Efficient Frontier Analysis</h2>
+                <div class="chart-container">
+                    <div id="frontierChart"></div>
+                </div>
+                <p class="chart-description">
+                    The efficient frontier shows the set of optimal portfolios that offer the highest expected return 
+                    for a defined level of risk. The red star shows the maximum Sharpe ratio portfolio, 
+                    and the green star shows the minimum variance portfolio.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with Modern Portfolio Theory | Data from Yahoo Finance</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
