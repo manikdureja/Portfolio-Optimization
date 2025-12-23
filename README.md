@@ -2,6 +2,11 @@
 
 A comprehensive web application for optimizing financial portfolios using Modern Portfolio Theory (MPT) and Sharpe ratio maximization.
 
+## 🚀 Live Demo
+
+🔗 **Deployed App:**  
+https://portfolio-optimization-2iwy.onrender.com/
+
 ## Features
 
 - **Portfolio Optimization**: Maximize Sharpe ratio or minimize portfolio variance
@@ -213,3 +218,4 @@ For questions or suggestions, please open an issue on the project repository.
 ---
 
 **Disclaimer**: This tool is for educational purposes only. Always consult with financial professionals before making investment decisions.
+
